@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarQR — Register Your Vehicle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .step {
+        display: none;
+      }
+      .step.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white"
+  >
+    <!-- Hero Section -->
+    <div class="max-w-4xl mx-auto px-6 pt-16 pb-8 text-center">
+      <div class="text-5xl mb-4">🚗</div>
+      <h1 class="text-4xl font-extrabold mb-3">CarQR</h1>
+      <p class="text-blue-200 text-lg max-w-xl mx-auto">
+        Register your vehicle, get a QR sticker. Anyone blocking — they can
+        contact you
+        <span class="text-white font-semibold"
+          >without ever seeing your real phone number.</span
+        >
+      </p>
+    </div>
+
+    <!-- How it works -->
+    <div class="max-w-4xl mx-auto px-6 pb-12">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="bg-white/5 rounded-2xl p-4">
+          <div class="text-2xl mb-2">📝</div>
+          <p class="text-xs text-blue-200 font-medium">1. Register your car</p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-4">
+          <div class="text-2xl mb-2">🖨️</div>
+          <p class="text-xs text-blue-200 font-medium">
+            2. Print &amp; stick QR tag
+          </p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-4">
+          <div class="text-2xl mb-2">🔒</div>
+          <p class="text-xs text-blue-200 font-medium">
+            3. Get called — privately
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Card -->
+    <div class="max-w-md mx-auto px-6 pb-20">
+      <div
+        class="bg-white rounded-3xl shadow-2xl text-gray-800 overflow-hidden"
+      >
+        <!-- Step 1: Registration Form -->
+        <div id="step1" class="step active p-8">
+          <h2 class="text-2xl font-bold mb-1">Register Your Vehicle</h2>
+          <p class="text-gray-500 text-sm mb-6">
+            Your phone number will never be shown publicly.
+          </p>
+
+          <form id="registerForm" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Your Name</label
+              >
+              <input
+                type="text"
+                id="ownerName"
+                name="ownerName"
+                placeholder="e.g. Rahul Sharma"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p
+                id="err-ownerName"
+                class="text-red-500 text-xs mt-1 hidden"
+              ></p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Phone Number</label
+              >
+              <div class="flex gap-2">
+                <select
+                  id="phonePrefix"
+                  class="border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                >
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+971">🇦🇪 +971</option>
+                </select>
+                <input
+                  type="tel"
+                  id="ownerPhone"
+                  name="ownerPhone"
+                  placeholder="9876543210"
+                  class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <p
+                id="err-ownerPhone"
+                class="text-red-500 text-xs mt-1 hidden"
+              ></p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Vehicle Number</label
+              >
+              <input
+                type="text"
+                id="vehicleNumber"
+                name="vehicleNumber"
+                placeholder="e.g. DL 01 AB 1234"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 uppercase"
+                oninput="this.value = this.value.toUpperCase()"
+              />
+              <p
+                id="err-vehicleNumber"
+                class="text-red-500 text-xs mt-1 hidden"
+              ></p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Vehicle Model
+                <span class="text-gray-400">(optional)</span></label
+              >
+              <input
+                type="text"
+                id="vehicleModel"
+                name="vehicleModel"
+                placeholder="e.g. Maruti Swift White"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              id="submitBtn"
+              class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all mt-2"
+            >
+              Generate My QR Tag →
+            </button>
+          </form>
+
+          <p class="text-center text-xs text-gray-400 mt-4">
+            🔒 Your real phone number is encrypted and never shown publicly.
+          </p>
+        </div>
+
+        <!-- Step 2: Loading -->
+        <div id="step2" class="step p-8 text-center">
+          <div class="text-5xl mb-4 animate-bounce">⚙️</div>
+          <h2 class="text-xl font-bold mb-2">Generating your QR tag...</h2>
+          <p class="text-gray-500 text-sm">
+            Setting up your virtual number and creating your tag.
+          </p>
+        </div>
+
+        <!-- Step 3: Success + QR -->
+        <div id="step3" class="step p-8 text-center">
+          <div class="text-4xl mb-3">🎉</div>
+          <h2 class="text-xl font-bold mb-1">Your QR Tag is Ready!</h2>
+          <p class="text-gray-500 text-sm mb-4">
+            Print it and stick it on your windscreen.
+          </p>
+
+          <div
+            id="qrDisplay"
+            class="bg-gray-50 rounded-2xl p-4 mb-4 inline-block"
+          >
+            <!-- QR code image will be injected here -->
+          </div>
+
+          <div class="bg-blue-50 rounded-xl p-3 text-left mb-4">
+            <p class="text-xs text-blue-800">
+              <strong>Vehicle:</strong> <span id="displayVehicle"></span><br />
+              <strong>Your virtual number:</strong>
+              <span id="displayMasked"></span><br />
+              <strong>Your real number:</strong>
+              <span class="text-green-600">Hidden 🔒</span>
+            </p>
+          </div>
+
+          <div class="flex gap-3">
+            <a
+              id="printBtn"
+              href="#"
+              target="_blank"
+              class="flex-1 bg-blue-600 text-white py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-all text-center"
+            >
+              🖨️ Print Tag
+            </a>
+            <button
+              onclick="resetForm()"
+              class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl text-sm font-semibold hover:bg-gray-200 transition-all"
+            >
+              + Add Another Car
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("registerForm");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Clear errors
+        document
+          .querySelectorAll('[id^="err-"]')
+          .forEach((el) => el.classList.add("hidden"));
+
+        // Validate
+        let valid = true;
+        const name = document.getElementById("ownerName").value.trim();
+        const phone =
+          document.getElementById("phonePrefix").value +
+          document.getElementById("ownerPhone").value.trim();
+        const vehicle = document.getElementById("vehicleNumber").value.trim();
+        const model = document.getElementById("vehicleModel").value.trim();
+
+        if (!name) {
+          showError("ownerName", "Name is required");
+          valid = false;
+        }
+        if (!document.getElementById("ownerPhone").value.trim()) {
+          showError("ownerPhone", "Phone is required");
+          valid = false;
+        }
+        if (!vehicle) {
+          showError("vehicleNumber", "Vehicle number is required");
+          valid = false;
+        }
+        if (!valid) return;
+
+        // Show loading
+        showStep("step2");
+
+        try {
+          const res = await fetch("/api/cars/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ownerName: name,
+              ownerPhone: phone,
+              vehicleNumber: vehicle,
+              vehicleModel: model,
+            }),
+          });
+
+          const json = await res.json();
+
+          if (!res.ok) {
+            showStep("step1");
+            if (json.errors) {
+              json.errors.forEach((err) => showError(err.path, err.msg));
+            } else {
+              alert(json.message || "Registration failed");
+            }
+            return;
+          }
+
+          // Show success
+          document.getElementById("displayVehicle").textContent =
+            json.data.vehicleNumber;
+          document.getElementById("displayMasked").textContent =
+            json.data.maskedNumber;
+          document.getElementById("printBtn").href = json.data.printUrl;
+          document.getElementById("qrDisplay").innerHTML =
+            `<img src="${json.data.qrCodeDataUrl}" alt="QR Code" class="w-40 h-40 mx-auto" />`;
+
+          showStep("step3");
+        } catch (err) {
+          showStep("step1");
+          alert("Network error. Please try again.");
+        }
+      });
+
+      function showStep(id) {
+        document
+          .querySelectorAll(".step")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+      }
+
+      function showError(field, msg) {
+        const el = document.getElementById(`err-${field}`);
+        if (el) {
+          el.textContent = msg;
+          el.classList.remove("hidden");
+        }
+      }
+
+      function resetForm() {
+        form.reset();
+        showStep("step1");
+      }
+    </script>
+  </body>
+</html>
