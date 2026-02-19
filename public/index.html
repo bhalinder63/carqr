@@ -42,9 +42,9 @@
           <p class="text-xs text-blue-200 font-medium">1. Register your car</p>
         </div>
         <div class="bg-white/5 rounded-2xl p-4">
-          <div class="text-2xl mb-2">🖨️</div>
+          <div class="text-2xl mb-2">📬</div>
           <p class="text-xs text-blue-200 font-medium">
-            2. Print &amp; stick QR tag
+            2. Receive QR tag by post
           </p>
         </div>
         <div class="bg-white/5 rounded-2xl p-4">
@@ -146,12 +146,90 @@
               />
             </div>
 
+            <hr class="my-2 border-gray-100" />
+            <p class="text-sm font-semibold text-gray-700 mb-1">
+              Delivery Address
+            </p>
+            <p class="text-xs text-gray-400 mb-3">
+              We'll mail your QR sticker to this address.
+            </p>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Street Address</label
+              >
+              <input
+                type="text"
+                id="addressStreet"
+                name="addressStreet"
+                placeholder="e.g. 45, Rajendra Nagar"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p
+                id="err-addressStreet"
+                class="text-red-500 text-xs mt-1 hidden"
+              ></p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >City</label
+                >
+                <input
+                  type="text"
+                  id="addressCity"
+                  name="addressCity"
+                  placeholder="e.g. Ludhiana"
+                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <p
+                  id="err-addressCity"
+                  class="text-red-500 text-xs mt-1 hidden"
+                ></p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >State</label
+                >
+                <input
+                  type="text"
+                  id="addressState"
+                  name="addressState"
+                  placeholder="e.g. Punjab"
+                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <p
+                  id="err-addressState"
+                  class="text-red-500 text-xs mt-1 hidden"
+                ></p>
+              </div>
+            </div>
+
+            <div class="w-1/2">
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >PIN Code</label
+              >
+              <input
+                type="text"
+                id="addressPincode"
+                name="addressPincode"
+                placeholder="e.g. 141001"
+                maxlength="6"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p
+                id="err-addressPincode"
+                class="text-red-500 text-xs mt-1 hidden"
+              ></p>
+            </div>
+
             <button
               type="submit"
               id="submitBtn"
               class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all mt-2"
             >
-              Generate My QR Tag →
+              Register Your Vehicle and Get Your QR Code By Post →
             </button>
           </form>
 
@@ -163,29 +241,22 @@
         <!-- Step 2: Loading -->
         <div id="step2" class="step p-8 text-center">
           <div class="text-5xl mb-4 animate-bounce">⚙️</div>
-          <h2 class="text-xl font-bold mb-2">Generating your QR tag...</h2>
+          <h2 class="text-xl font-bold mb-2">Registering your vehicle...</h2>
           <p class="text-gray-500 text-sm">
-            Setting up your virtual number and creating your tag.
+            Setting up your virtual number and preparing your QR tag.
           </p>
         </div>
 
         <!-- Step 3: Success + QR -->
         <div id="step3" class="step p-8 text-center">
           <div class="text-4xl mb-3">🎉</div>
-          <h2 class="text-xl font-bold mb-1">Your QR Tag is Ready!</h2>
+          <h2 class="text-xl font-bold mb-1">Registration Successful!</h2>
           <p class="text-gray-500 text-sm mb-4">
-            Print it and stick it on your windscreen.
+            Your QR tag will be mailed to your address.
           </p>
 
-          <div
-            id="qrDisplay"
-            class="bg-gray-50 rounded-2xl p-4 mb-4 inline-block"
-          >
-            <!-- QR code image will be injected here -->
-          </div>
-
-          <div class="bg-blue-50 rounded-xl p-3 text-left mb-4">
-            <p class="text-xs text-blue-800">
+          <div class="bg-blue-50 rounded-xl p-4 text-left mb-4">
+            <p class="text-sm text-blue-800">
               <strong>Vehicle:</strong> <span id="displayVehicle"></span><br />
               <strong>Your virtual number:</strong>
               <span id="displayMasked"></span><br />
@@ -194,22 +265,24 @@
             </p>
           </div>
 
-          <div class="flex gap-3">
-            <a
-              id="printBtn"
-              href="#"
-              target="_blank"
-              class="flex-1 bg-blue-600 text-white py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-all text-center"
-            >
-              🖨️ Print Tag
-            </a>
-            <button
-              onclick="resetForm()"
-              class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl text-sm font-semibold hover:bg-gray-200 transition-all"
-            >
-              + Add Another Car
-            </button>
+          <div class="bg-amber-50 border border-amber-100 rounded-xl p-4 mb-4">
+            <div class="text-2xl mb-2">📬</div>
+            <p class="text-sm font-semibold text-amber-800 mb-1">
+              What happens next?
+            </p>
+            <p class="text-xs text-amber-700">
+              We'll prepare your QR sticker and mail it to your address. Once
+              you receive it, stick it on your windscreen. You'll get an SMS
+              confirmation shortly.
+            </p>
           </div>
+
+          <button
+            onclick="resetForm()"
+            class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all"
+          >
+            + Register Another Vehicle
+          </button>
         </div>
       </div>
     </div>
@@ -233,6 +306,10 @@
           document.getElementById("ownerPhone").value.trim();
         const vehicle = document.getElementById("vehicleNumber").value.trim();
         const model = document.getElementById("vehicleModel").value.trim();
+        const street = document.getElementById("addressStreet").value.trim();
+        const city = document.getElementById("addressCity").value.trim();
+        const state = document.getElementById("addressState").value.trim();
+        const pincode = document.getElementById("addressPincode").value.trim();
 
         if (!name) {
           showError("ownerName", "Name is required");
@@ -244,6 +321,22 @@
         }
         if (!vehicle) {
           showError("vehicleNumber", "Vehicle number is required");
+          valid = false;
+        }
+        if (!street) {
+          showError("addressStreet", "Street address is required");
+          valid = false;
+        }
+        if (!city) {
+          showError("addressCity", "City is required");
+          valid = false;
+        }
+        if (!state) {
+          showError("addressState", "State is required");
+          valid = false;
+        }
+        if (!pincode || pincode.length < 5) {
+          showError("addressPincode", "Valid PIN code is required");
           valid = false;
         }
         if (!valid) return;
@@ -260,6 +353,12 @@
               ownerPhone: phone,
               vehicleNumber: vehicle,
               vehicleModel: model,
+              address: {
+                street: street,
+                city: city,
+                state: state,
+                pincode: pincode,
+              },
             }),
           });
 
@@ -280,9 +379,6 @@
             json.data.vehicleNumber;
           document.getElementById("displayMasked").textContent =
             json.data.maskedNumber;
-          document.getElementById("printBtn").href = json.data.printUrl;
-          document.getElementById("qrDisplay").innerHTML =
-            `<img src="${json.data.qrCodeDataUrl}" alt="QR Code" class="w-40 h-40 mx-auto" />`;
 
           showStep("step3");
         } catch (err) {

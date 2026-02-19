@@ -133,7 +133,7 @@ async function notifyOwnerMissedCall(ownerPhone, carInfo) {
  */
 async function sendWelcomeSMS(ownerPhone, carInfo) {
   const message = await client.messages.create({
-    body: `Welcome to CarQR! Your vehicle ${carInfo.vehicleNumber} has been registered successfully. Your QR tag is ready to print. You'll receive alerts whenever someone scans it.`,
+    body: `Welcome to CarQR! Your vehicle ${carInfo.vehicleNumber} has been registered successfully. Your QR tag will be prepared and mailed to your address. You'll receive alerts whenever someone scans it.`,
     from: TWILIO_NUMBER,
     to: ownerPhone,
   });
