@@ -1,20 +1,20 @@
 // src/routes/contact.js
 // Public-facing contact page — what a stranger sees after scanning the QR code
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const firebaseService = require('../services/firebase');
-const twilioService = require('../services/twilio');
+const firebaseService = require("../services/firebase");
+const twilioService = require("../services/twilio");
 
 function escapeHtml(str) {
-  if (!str) return '';
+  if (!str) return "";
   return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
 }
 
 /**
@@ -24,20 +24,22 @@ function escapeHtml(str) {
  * Shows car info and a "Call Owner" button.
  * Real phone number is NEVER sent to the browser.
  */
-router.get('/:carId', async (req, res) => {
+router.get("/:carId", async (req, res) => {
   try {
     const { carId } = req.params;
     const car = await firebaseService.getCarById(carId);
 
     if (!car || !car.isActive) {
-      return res.status(404).send(renderErrorPage('This QR tag is not active or not found.'));
+      return res
+        .status(404)
+        .send(renderErrorPage("This QR tag is not active or not found."));
     }
 
     // Log the scan
     await firebaseService.incrementScanCount(carId);
     await firebaseService.logScan(carId, {
-      action: 'qr_scanned',
-      userAgent: req.headers['user-agent'],
+      action: "qr_scanned",
+      userAgent: req.headers["user-agent"],
       ip: req.ip,
     });
 
@@ -45,16 +47,17 @@ router.get('/:carId', async (req, res) => {
     try {
       await twilioService.notifyOwnerOfScan(car.ownerPhone, car);
     } catch (e) {
-      console.warn('Scan notification SMS failed:', e.message);
+      console.warn("Scan notification SMS failed:", e.message);
     }
 
     // Render the contact page
     // maskedNumber is the Twilio virtual number — safe to display
     res.send(renderContactPage(car));
-
   } catch (error) {
-    console.error('Contact page error:', error);
-    res.status(500).send(renderErrorPage('Something went wrong. Please try again.'));
+    console.error("Contact page error:", error);
+    res
+      .status(500)
+      .send(renderErrorPage("Something went wrong. Please try again."));
   }
 });
 
@@ -91,7 +94,7 @@ function renderContactPage(car) {
       <div class="bg-gray-50 rounded-2xl p-4 mb-4 text-center">
         <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Vehicle Number</p>
         <p class="text-2xl font-bold text-gray-800 tracking-wider">${escapeHtml(car.vehicleNumber)}</p>
-        ${car.vehicleModel ? `<p class="text-sm text-gray-500 mt-1">${escapeHtml(car.vehicleModel)}</p>` : ''}
+        ${car.vehicleModel ? `<p class="text-sm text-gray-500 mt-1">${escapeHtml(car.vehicleModel)}</p>` : ""}
       </div>
 
       <!-- Owner badge -->
@@ -180,6 +183,42 @@ function renderContactPage(car) {
         <p class="text-xs text-amber-700 text-center">
           ℹ️ The owner has been notified by SMS that someone scanned their QR tag.
         </p>
+      </div>
+
+      <!-- Emergency Helpline -->
+      <div class="mt-4">
+        <button onclick="document.getElementById('helplines').classList.toggle('hidden')" 
+          class="w-full bg-red-50 border border-red-100 rounded-xl p-3 text-sm font-semibold text-red-600 hover:bg-red-100 transition-all">
+          🚨 Emergency Help
+        </button>
+        <div id="helplines" class="hidden mt-2 bg-red-50 border border-red-100 rounded-xl p-3 space-y-2">
+          <p class="text-xs text-red-400 text-center mb-2">Tap to call directly</p>
+          <a href="tel:112" class="flex items-center gap-3 bg-white rounded-lg p-2.5 hover:bg-red-50 transition-all">
+            <span class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-sm">🆘</span>
+            <span class="text-sm font-medium text-gray-700">Emergency — 112</span>
+            <span class="ml-auto text-xs text-red-500 font-semibold">CALL</span>
+          </a>
+          <a href="tel:100" class="flex items-center gap-3 bg-white rounded-lg p-2.5 hover:bg-red-50 transition-all">
+            <span class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-sm">🚔</span>
+            <span class="text-sm font-medium text-gray-700">Police — 100</span>
+            <span class="ml-auto text-xs text-red-500 font-semibold">CALL</span>
+          </a>
+          <a href="tel:102" class="flex items-center gap-3 bg-white rounded-lg p-2.5 hover:bg-red-50 transition-all">
+            <span class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-sm">🚑</span>
+            <span class="text-sm font-medium text-gray-700">Ambulance — 102</span>
+            <span class="ml-auto text-xs text-red-500 font-semibold">CALL</span>
+          </a>
+          <a href="tel:101" class="flex items-center gap-3 bg-white rounded-lg p-2.5 hover:bg-red-50 transition-all">
+            <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-sm">🚒</span>
+            <span class="text-sm font-medium text-gray-700">Fire — 101</span>
+            <span class="ml-auto text-xs text-red-500 font-semibold">CALL</span>
+          </a>
+          <a href="tel:1091" class="flex items-center gap-3 bg-white rounded-lg p-2.5 hover:bg-red-50 transition-all">
+            <span class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-sm">👩</span>
+            <span class="text-sm font-medium text-gray-700">Women Helpline — 1091</span>
+            <span class="ml-auto text-xs text-red-500 font-semibold">CALL</span>
+          </a>
+        </div>
       </div>
     </div>
 
