@@ -107,7 +107,7 @@ function generateNoAnswerTwiML() {
  */
 async function notifyOwnerOfScan(ownerPhone, carInfo) {
   const message = await client.messages.create({
-    body: `🚗 Alert! Someone scanned the QR code on your vehicle ${carInfo.vehicleNumber}. They may need to contact you. Check your CarQR dashboard.`,
+    body: `🔔 RingMyRide Alert! Someone scanned the QR code on your vehicle ${carInfo.vehicleNumber}. They may need to contact you about your parking.`,
     from: TWILIO_NUMBER,
     to: ownerPhone,
   });
@@ -120,7 +120,7 @@ async function notifyOwnerOfScan(ownerPhone, carInfo) {
  */
 async function notifyOwnerMissedCall(ownerPhone, carInfo) {
   const message = await client.messages.create({
-    body: `📞 Missed Alert! Someone tried to call you about your vehicle ${carInfo.vehicleNumber} but you didn't answer. Please move your car if it's blocking someone.`,
+    body: `📞 RingMyRide: Missed call! Someone tried to reach you about vehicle ${carInfo.vehicleNumber} but you didn't answer. Please check if your car is blocking someone.`,
     from: TWILIO_NUMBER,
     to: ownerPhone,
   });
@@ -133,7 +133,7 @@ async function notifyOwnerMissedCall(ownerPhone, carInfo) {
  */
 async function sendWelcomeSMS(ownerPhone, carInfo) {
   const message = await client.messages.create({
-    body: `Welcome to CarQR! Your vehicle ${carInfo.vehicleNumber} has been registered successfully. Your QR tag will be prepared and mailed to your address. You'll receive alerts whenever someone scans it.`,
+    body: `Welcome to RingMyRide! Your vehicle ${carInfo.vehicleNumber} has been registered. Your QR tag will be prepared and mailed to your address. You'll receive alerts whenever someone scans it.`,
     from: TWILIO_NUMBER,
     to: ownerPhone,
   });
@@ -145,7 +145,7 @@ async function sendWelcomeSMS(ownerPhone, carInfo) {
  */
 async function sendOTP(phoneNumber, otp) {
   const message = await client.messages.create({
-    body: `Your CarQR verification code is: ${otp}. Valid for 10 minutes. Do not share this with anyone.`,
+    body: `Your RingMyRide verification code is: ${otp}. Valid for 10 minutes. Do not share this with anyone.`,
     from: TWILIO_NUMBER,
     to: phoneNumber,
   });

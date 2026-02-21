@@ -1,7 +1,7 @@
 {
-  "name": "carqr-parking-alert",
+  "name": "ringmyride",
   "version": "1.0.0",
-  "description": "QR-based parking alert system with masked calling via Twilio",
+  "description": "RingMyRide — QR-based parking alert system with masked calling via Twilio",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

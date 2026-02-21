@@ -98,7 +98,7 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`
   ╔══════════════════════════════════════╗
-  ║   CarQR Parking Alert Server         ║
+  ║   RingMyRide Server                  ║
   ║   Running on http://localhost:${PORT}   ║
   ╚══════════════════════════════════════╝
   `);

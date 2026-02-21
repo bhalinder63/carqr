@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CarQR — Register Your Vehicle</title>
+    <title>RingMyRide — Register Your Vehicle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
@@ -19,19 +19,20 @@
     </style>
   </head>
   <body
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white"
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-orange-950 text-white"
   >
     <!-- Hero Section -->
     <div class="max-w-4xl mx-auto px-6 pt-16 pb-8 text-center">
-      <div class="text-5xl mb-4">🚗</div>
-      <h1 class="text-4xl font-extrabold mb-3">CarQR</h1>
-      <p class="text-blue-200 text-lg max-w-xl mx-auto">
-        Register your vehicle, get a QR sticker. Anyone blocking — they can
-        contact you
+      <div class="text-5xl mb-4">🔔</div>
+      <h1 class="text-4xl font-extrabold mb-3">Ring<span class="text-orange-400">My</span>Ride</h1>
+      <p class="text-orange-200 text-lg max-w-xl mx-auto">
+        Register your vehicle, get a QR sticker. Anyone blocked — they can
+        reach you
         <span class="text-white font-semibold"
           >without ever seeing your real phone number.</span
         >
       </p>
+      <p class="text-orange-300/60 text-sm mt-2 font-medium tracking-wide">Scan. Ring. Sorted.</p>
     </div>
 
     <!-- How it works -->
@@ -39,18 +40,18 @@
       <div class="grid grid-cols-3 gap-4 text-center">
         <div class="bg-white/5 rounded-2xl p-4">
           <div class="text-2xl mb-2">📝</div>
-          <p class="text-xs text-blue-200 font-medium">1. Register your car</p>
+          <p class="text-xs text-orange-200 font-medium">1. Register your ride</p>
         </div>
         <div class="bg-white/5 rounded-2xl p-4">
           <div class="text-2xl mb-2">📬</div>
-          <p class="text-xs text-blue-200 font-medium">
-            2. Receive QR tag by post
+          <p class="text-xs text-orange-200 font-medium">
+            2. Get QR tag by post
           </p>
         </div>
         <div class="bg-white/5 rounded-2xl p-4">
-          <div class="text-2xl mb-2">🔒</div>
-          <p class="text-xs text-blue-200 font-medium">
-            3. Get called — privately
+          <div class="text-2xl mb-2">🔔</div>
+          <p class="text-xs text-orange-200 font-medium">
+            3. Get ringed — privately
           </p>
         </div>
       </div>
@@ -78,7 +79,7 @@
                 id="ownerName"
                 name="ownerName"
                 placeholder="e.g. Rahul Sharma"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <p
                 id="err-ownerName"
@@ -93,7 +94,7 @@
               <div class="flex gap-2">
                 <select
                   id="phonePrefix"
-                  class="border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  class="border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
                 >
                   <option value="+91">🇮🇳 +91</option>
                   <option value="+1">🇺🇸 +1</option>
@@ -105,7 +106,7 @@
                   id="ownerPhone"
                   name="ownerPhone"
                   placeholder="9876543210"
-                  class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
               <p
@@ -123,7 +124,7 @@
                 id="vehicleNumber"
                 name="vehicleNumber"
                 placeholder="e.g. DL 01 AB 1234"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 uppercase"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 uppercase"
                 oninput="this.value = this.value.toUpperCase()"
               />
               <p
@@ -142,7 +143,7 @@
                 id="vehicleModel"
                 name="vehicleModel"
                 placeholder="e.g. Maruti Swift White"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
@@ -163,7 +164,7 @@
                 id="addressStreet"
                 name="addressStreet"
                 placeholder="e.g. 45, Rajendra Nagar"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <p
                 id="err-addressStreet"
@@ -181,7 +182,7 @@
                   id="addressCity"
                   name="addressCity"
                   placeholder="e.g. Ludhiana"
-                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
                 <p
                   id="err-addressCity"
@@ -197,7 +198,7 @@
                   id="addressState"
                   name="addressState"
                   placeholder="e.g. Punjab"
-                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
                 <p
                   id="err-addressState"
@@ -216,7 +217,7 @@
                 name="addressPincode"
                 placeholder="e.g. 141001"
                 maxlength="6"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <p
                 id="err-addressPincode"
@@ -227,7 +228,7 @@
             <button
               type="submit"
               id="submitBtn"
-              class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all mt-2"
+              class="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all mt-2"
             >
               Register Your Vehicle and Get Your QR Code By Post →
             </button>
@@ -255,8 +256,8 @@
             Your QR tag will be mailed to your address.
           </p>
 
-          <div class="bg-blue-50 rounded-xl p-4 text-left mb-4">
-            <p class="text-sm text-blue-800">
+          <div class="bg-orange-50 rounded-xl p-4 text-left mb-4">
+            <p class="text-sm text-orange-800">
               <strong>Vehicle:</strong> <span id="displayVehicle"></span><br />
               <strong>Your virtual number:</strong>
               <span id="displayMasked"></span><br />
@@ -279,7 +280,7 @@
 
           <button
             onclick="resetForm()"
-            class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all"
+            class="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-all"
           >
             + Register Another Vehicle
           </button>

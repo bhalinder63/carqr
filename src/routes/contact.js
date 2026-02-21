@@ -66,7 +66,7 @@ function renderContactPage(car) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Car Owner — ${escapeHtml(car.vehicleNumber)}</title>
+  <title>RingMyRide — Contact Owner of ${escapeHtml(car.vehicleNumber)}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -75,15 +75,15 @@ function renderContactPage(car) {
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+<body class="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center p-4">
 
   <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full overflow-hidden">
     
     <!-- Header -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white text-center">
-      <div class="text-4xl mb-2">🚗</div>
-      <h1 class="text-xl font-bold">Parking Alert</h1>
-      <p class="text-blue-100 text-sm mt-1">Contact the car owner</p>
+    <div class="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white text-center">
+      <div class="text-4xl mb-2">🔔</div>
+      <h1 class="text-xl font-bold">RingMyRide</h1>
+      <p class="text-orange-100 text-sm mt-1">Contact the car owner</p>
     </div>
 
     <!-- Car Info -->
@@ -112,18 +112,18 @@ function renderContactPage(car) {
       <p class="text-xs text-gray-500 mb-2">Enter your number — we'll call you and connect you to the owner.</p>
       <form id="callRequestForm" class="space-y-3">
         <div class="flex gap-2">
-          <select id="callerPrefix" class="border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white w-24">
+          <select id="callerPrefix" class="border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white w-24">
             <option value="+91">🇮🇳 +91</option>
             <option value="+1">🇺🇸 +1</option>
             <option value="+44">🇬🇧 +44</option>
             <option value="+971">🇦🇪 +971</option>
           </select>
           <input type="tel" id="callerPhone" placeholder="9876543210" required
-            class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
         </div>
         <button type="submit" id="callBtn"
-          class="block w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center py-4 rounded-2xl font-semibold text-lg hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-blue-200 disabled:opacity-60 disabled:cursor-not-allowed">
+          class="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-4 rounded-2xl font-semibold text-lg hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-orange-200 disabled:opacity-60 disabled:cursor-not-allowed">
           📞 Call Me
         </button>
       </form>
@@ -185,7 +185,7 @@ function renderContactPage(car) {
 
     <!-- Footer -->
     <div class="border-t p-4 text-center">
-      <p class="text-xs text-gray-300">Powered by CarQR • Privacy Protected</p>
+      <p class="text-xs text-gray-300">Powered by RingMyRide • Privacy Protected</p>
     </div>
   </div>
 
@@ -199,7 +199,7 @@ function renderErrorPage(message) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Not Found — CarQR</title>
+  <title>Not Found — RingMyRide</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">

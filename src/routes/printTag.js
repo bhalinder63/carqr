@@ -60,7 +60,7 @@ function renderPrintPage(car, qrSvg) {
     }
 
     .tag-header {
-      background: linear-gradient(135deg, #1a56db, #3b82f6);
+      background: linear-gradient(135deg, #F97316, #EF4444);
       color: white;
       border-radius: 8px;
       padding: 8px;
@@ -92,18 +92,18 @@ function renderPrintPage(car, qrSvg) {
     }
 
     .scan-instruction {
-      background: #eff6ff;
+      background: #fff7ed;
       border-radius: 6px;
       padding: 6px 8px;
       font-size: 9px;
-      color: #1d4ed8;
+      color: #c2410c;
       margin: 8px 0;
     }
 
     /* Print controls (not printed) */
     .controls { text-align: center; margin-top: 16px; }
     .btn-print {
-      background: #1a56db; color: white;
+      background: #F97316; color: white;
       border: none; padding: 10px 24px;
       border-radius: 8px; font-size: 14px;
       cursor: pointer; margin: 4px;
@@ -123,7 +123,7 @@ function renderPrintPage(car, qrSvg) {
     <!-- Print Tag -->
     <div class="tag">
       <div class="tag-header">
-        <h1>🚗 PARKING ALERT</h1>
+        <h1>🔔 RINGMYRIDE</h1>
         <p>Scan to contact car owner</p>
       </div>
 
@@ -141,7 +141,7 @@ function renderPrintPage(car, qrSvg) {
 
       <div class="tag-footer">
         Phone numbers are protected &amp; private.<br>
-        Powered by CarQR &bull; carqr.app
+        Powered by RingMyRide &bull; ringmyride.in
       </div>
     </div>
 
